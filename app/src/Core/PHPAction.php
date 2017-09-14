@@ -1,5 +1,5 @@
 <?php
-namespace PHPAction;
+namespace PHPAction\Core;
 
 //dependencies
 use PHPAction\Concerns\HasAction;
