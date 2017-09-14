@@ -5,8 +5,8 @@ namespace PHPAction\Core;
 use PHPAction\Concerns\HasAction;
 
 /**
- * Class Action
- * @package PHPAction\Abstracts
+ * Trait PHPAction
+ * @package PHPAction\Core
  */
 trait PHPAction
 {

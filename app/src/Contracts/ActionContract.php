@@ -15,7 +15,7 @@ interface ActionContract
      * @param $param
      * @return mixed
      */
-    public function prepareDo(
+    public function prepareDoMany(
         $param
     );
 
