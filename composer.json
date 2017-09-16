@@ -16,5 +16,16 @@
         "psr-4": {
             "PHPAction\\": "app/src"
         }
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.*",
+        "phpunit/phpunit": "^6.2"
+    },
+    "scripts": {
+        "test-core": "vendor/bin/phpunit --testsuite=LazyFramework",
+        "test-modules": "vendor/bin/phpunit --testsuite=Modules",
+        "test-dox": "vendor/bin/phpunit --testdox tests/",
+        "sniff": "vendor/bin/phpcs --standard=psr2 app/src/",
+        "sniff-fix": "vendor/bin/phpcbf --standard=psr2 app/src/"
     }
 }

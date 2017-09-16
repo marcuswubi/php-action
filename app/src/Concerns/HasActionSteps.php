@@ -11,14 +11,11 @@ trait HasActionSteps
      * @param array $param
      * @return array
      */
-    public function beforeDo (
+    public function beforeDo(
         array $param
     ): array {
         try {
-            //CARREGA O MODEL VAZIO
-            $this->loadModel();
-            $beforeDo = $this->before($param);
-            return $beforeDo;
+            return $this->before($param);
         } catch (TExceptionAbstract $e) {
             //ADICIONA FALHA VIA HASPREPARERETORNO
             $this->newFail(strtoupper($e->getMessage()));
@@ -41,10 +38,26 @@ trait HasActionSteps
      * @param array $param
      * @return array
      */
-    public function afterDo (
+    public function afterDo(
         array $param
     ): array {
-        //IMPLEMENT HERE BY OVERRIDING, YOUR OWN METHOD TO RUN AFTER CLOSE ACTION
+        try {
+            return $this->after($param);
+        } catch (TExceptionAbstract $e) {
+            //ADICIONA FALHA VIA HASPREPARERETORNO
+            $this->newFail(strtoupper($e->getMessage()));
+            return [
+                'success' => false,
+                'message' => strtoupper($e->getMessage())
+            ];
+        } catch (\Exception $e) {
+            //ADICIONA FALHA VIA HASPREPARERETORNO
+            $this->newFail(strtoupper($e->getMessage()));
+            return [
+                'success' => false,
+                'message' => strtoupper($e->getMessage())
+            ];
+        }
     }
 
     /**
@@ -64,5 +77,4 @@ trait HasActionSteps
     {
         return true;
     }
-
 }

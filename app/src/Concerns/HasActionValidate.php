@@ -65,10 +65,10 @@ trait HasActionValidate
      * Can Do This Job? Puit here code to check if record have requirements to run job
      * @return bool|string
      */
-    public function canDo (
+    public function canDo(
         $param
-    ): bool
-    {
+    ): bool {
+    
         try {
             //RETORNO
             return true;

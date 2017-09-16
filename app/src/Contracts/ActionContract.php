@@ -23,7 +23,7 @@ interface ActionContract
      * @param $param
      * @return bool
      */
-    public function canDo (
+    public function canDo(
         $param
     ): bool;
 
@@ -39,7 +39,7 @@ interface ActionContract
      * @param array $param
      * @return array
      */
-    public function beforeDo (
+    public function beforeDo(
         array $param
     ): array;
 
@@ -47,7 +47,7 @@ interface ActionContract
      * @param array $param
      * @return mixed
      */
-    public function afterDo (
+    public function afterDo(
         array $param
     );
 
@@ -61,7 +61,7 @@ interface ActionContract
      * Escreva dentro desse metodo a sua implementacao da rotina
      * @param $param
      */
-    public function doWhat (
+    public function doWhat(
         $param
     );
 
@@ -94,7 +94,7 @@ interface ActionContract
      * @param array $param
      * @return array
      */
-    public function whenDoFail (
+    public function whenDoFail(
         $param
     );
 
@@ -103,7 +103,7 @@ interface ActionContract
      * @param array $param
      * @return array
      */
-    public function whenDoSuccess (
+    public function whenDoSuccess(
         $param
     );
 }

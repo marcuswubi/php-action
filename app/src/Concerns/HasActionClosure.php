@@ -11,7 +11,7 @@ trait HasActionClosure
      * Implement here by overriding, your closure to run when fail
      * @param $param
      */
-    public function whenDoFail (
+    public function whenDoFail(
         $param
     ) {
         //IMPLEMENT HERE BY OVERRIDING, YOUR CLOSURE TO RUN WHEN FAIL
@@ -21,10 +21,9 @@ trait HasActionClosure
      * Implement here by overriding, your closure to run when success
      * @param $param
      */
-    public function whenDoSuccess (
+    public function whenDoSuccess(
         $param
     ) {
         //IMPLEMENT HERE BY OVERRIDING, YOUR CLOSURE TO RUN WHEN SUCCESS
     }
-
 }

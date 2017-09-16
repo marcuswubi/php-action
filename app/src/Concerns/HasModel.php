@@ -56,5 +56,4 @@ trait HasModel
             'param' => $param
         ];
     }
-
 }

@@ -27,7 +27,7 @@ trait HasAction
      * @param $param
      * @return bool
      */
-    public function doWhat (
+    public function doWhat(
         $param
     ): bool {
         //ESCREVA DENTRO DESSE METODO A SUA IMPLEMENTACAO DA ROTINA
@@ -45,8 +45,7 @@ trait HasAction
         try {
             // ANTES DE EXECUTAR A ACAO
             $beforeDo = $this->beforeDo($param);
-            if (
-                empty($beforeDo['success']) ||
+            if (empty($beforeDo['success']) ||
                 $beforeDo['success'] !== true
             ) {
                 return false;
@@ -75,8 +74,7 @@ trait HasAction
 
             // DEPOIS DE EXECUTAR A ACAO
             $afterDo = $this->afterDo($param);
-            if (
-                empty($afterDo['success']) ||
+            if (empty($afterDo['success']) ||
                 $afterDo['success'] !== true
             ) {
                 return false;
@@ -89,7 +87,6 @@ trait HasAction
         } catch (\Exception $e) {
             return false;
         }
-
     }
 
     /**
@@ -119,9 +116,7 @@ trait HasAction
             $this->simpleArraytoMulti($params);
 
             // Inicia o retorno a partir do Trait HasPrepareRetorno
-            $this->prepareRetorno(
-                count($params)
-            );
+            $this->prepareRetorno($params);
 
             // Itera sobre os parametros e executa a Autorizacao Individualmente
             foreach ($params as $param) {
@@ -129,8 +124,7 @@ trait HasAction
                 if ($doOne === true) {
                     //SUCESS
                     $this->whenDoSuccess($doOne);
-                }
-                else {
+                } else {
                     //FAIL
                     $this->whenDoFail($param);
                 }
@@ -142,6 +136,4 @@ trait HasAction
             return $e->toJson();
         }
     }
-
-
 }

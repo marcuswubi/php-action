@@ -44,20 +44,30 @@ trait HasRetorno
             $this->countFail = 0;
             $this->countSuccess = 0;
             $this->countTotal = count($param);
+            $this->capSynchronous = 1;
 
             // Tipo de Processamento, baseado na quantidade de parametros
             $this->synchronous = $this->countTotal === $this->capSynchronous ? true : false;
 
             //Inicia o array de mensagens para compor o detalhamento
             $this->aMessages = [];
-
         } catch (TExceptionAbstract $e) {
             return $e->toJson();
         }
     }
 
     /**
-     * Incrementa o contador do TOTAL e da FALHA
+     * Update the count cap to run syncronous
+     * @param mixed $capSynchronous
+     */
+    public function setCapSynchronous($capSynchronous)
+    {
+        $this->capSynchronous = $capSynchronous;
+        $this->synchronous = $this->countTotal === $this->capSynchronous ? true : false;
+    }
+
+    /**
+     * Event FAIL
      * @param string $message
      * @return array
      */
@@ -83,7 +93,7 @@ trait HasRetorno
     }
 
     /**
-     * Incrementa o contador do TOTAL e do SUCESSO
+     * Event SUCCESS
      * @param string $message
      * @param string $extra
      * @return array
@@ -117,13 +127,13 @@ trait HasRetorno
     }
 
     /**
+     * Return GLOBAL return
      * @return array
      */
     public function getRetornoProcessamento(): array
     {
         // Valida se tem dados processados
-        if (
-            empty($this->retorno['data']) &&
+        if (empty($this->retorno['data']) &&
             empty($this->aMessages)
         ) {
             return [
@@ -141,5 +151,4 @@ trait HasRetorno
             'data' => $this->retorno['data']
         ];
     }
-
 }
