@@ -84,6 +84,8 @@ trait HasAction
             if ($this->endAction() !== true) {
                 return false;
             }
+
+            return true;
         } catch (\Exception $e) {
             return false;
         }
