@@ -144,7 +144,7 @@ trait HasRetorno
 
         $message = $this->countSuccess . ' registros processados e ' . $this->countFail . ' não foram processados. ';
         return [
-            'status' => true,
+            'status' => $this->countFail > 0 ? false : true,
             'message' => $message,
             'count' => $this->count,
             'detail' => '('.implode(', ', $this->aMessages).')',
