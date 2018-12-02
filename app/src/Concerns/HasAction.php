@@ -25,11 +25,11 @@ trait HasAction
     /**
      * This is the real method able to run action is doWhat
      * @param $param
-     * @return bool
+     * @return mixed
      */
     public function doWhat(
         $param
-    ): bool {
+    ) {
         //ESCREVA DENTRO DESSE METODO A SUA IMPLEMENTACAO DA ROTINA
         return true;
     }
@@ -37,7 +37,7 @@ trait HasAction
     /**
      * This method encapsule a singular action. The real method able to run action is doWhat
      * @param $param
-     * @return bool
+     * @return mixed
      */
     public function doOne(
         $param
@@ -68,7 +68,8 @@ trait HasAction
 
             //EXECUTA O METODO QUE IMPLEMENTA A ACAO
             //PARA RESPEITAR O CONTRATO DEVE SER ESCRITO NA CLASSE QUE EXECUTA A ACTION
-            if ($this->doWhat($param) !== true) {
+            $doWhat = $this->doWhat($param);
+            if (!boolval($doWhat)) {
                 return false;
             }
 
@@ -85,7 +86,7 @@ trait HasAction
                 return false;
             }
 
-            return true;
+            return $doWhat;
         } catch (\Exception $e) {
             return false;
         }
@@ -123,7 +124,7 @@ trait HasAction
             // Itera sobre os parametros e executa a Autorizacao Individualmente
             foreach ($params as $param) {
                 $doOne = $this->doOne($param);
-                if ($doOne === true) {
+                if (boolval($doOne)) {
                     //SUCESS
                     $this->whenDoSuccess($doOne);
                 } else {
